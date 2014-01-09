@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1387301084 source:c:\users\ade_baskara\documents\billiardgame2d\ball.cpp
+	<math.h>
+	"ball.h"
+	"common.h"
+	"geometry.h"
+	<vector>
+
+1387276325 c:\users\ade_baskara\documents\billiardgame2d\ball.h
+	<iostream>
+	"common.h"
+	"geometry.h"
+	<vector>
+
+1386028265 c:\users\ade_baskara\documents\billiardgame2d\common.h
+	<windows.h>
+	<OpenGL/gl.h>
+	<GLUT/glut.h>
+	<GL/gl.h>
+	<GL/glut.h>
+
+1387295611 c:\users\ade_baskara\documents\billiardgame2d\geometry.h
+	<cmath>
+
+1387276198 source:c:\users\ade_baskara\documents\billiardgame2d\main.cpp
+	<math.h>
+	<iostream>
+	<vector>
+	<string>
+	<cstring>
+	<sstream>
+	"ball.h"
+	"common.h"
+	"geometry.h"
+
