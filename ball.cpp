@@ -66,18 +66,24 @@ void Ball::checkBounds(vector<Ball> holes) {
   if (x[0] - radius < table_xinit + 20) {
     x[0] = radius + table_xinit + 20;
     v.x[0] = abs(v.x[0]);
+    cout << "kanan";
   } else if (x[0] + radius > table_width - 20 + table_xinit) {
      x[0] = table_width - 20 - radius + table_xinit;
     v.x[0] = -abs(v.x[0]);
+    cout << "kiri";
   }
 
   // Vertical Bounds
-  if (x[1] - radius < 20 + table_yinit) {
+  if ((x[1] - radius < 20 + table_yinit) && ((x[0] - radius < (table_width/2 + table_xinit) - 20) || (x[0] - radius > (table_width/2 + table_xinit) + 20))){
      x[1] = radius + 20  + table_yinit;
     v.x[1] = abs(v[1]);
-  } else if (x[1] + radius > table_height - 20 + table_yinit) {
+    cout << "atas" << x[0]-radius << endl;
+    cout << table_width/2 + table_xinit - 25 << endl;
+    cout << table_width/2 + table_xinit + 25 << endl;
+  } else if ((x[1] + radius > table_height - 20 + table_yinit) && ((x[0] - radius < (table_width/2 + table_xinit) - 20) || (x[0] - radius > (table_width/2 + table_xinit) + 20))) {
      x[1] = table_height - 20 - radius + table_yinit;
     v.x[1] = -abs(v.x[1]);
+    cout << "bawah" << x[0] << endl;
   }
 }
 

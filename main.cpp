@@ -45,10 +45,10 @@ void TableSetup() {
   // Pocket Setup
   holes.push_back(Ball(15.0 + table_xinit, 15.0 + table_yinit, 25, kBlack, false));
   holes.push_back(Ball(15.0 + table_xinit, table_height-15 + table_yinit, 25, kBlack, false));
-  holes.push_back(Ball(table_width/2 + table_xinit, 5.0 + table_yinit, 25, kBlack, false));
-  holes.push_back(Ball(table_width/2 + table_xinit, table_height-5 + table_yinit, 25, kBlack, false));
+  holes.push_back(Ball(table_width/2 + table_xinit, 15.0 + table_yinit, 25, kBlack, false));
+  holes.push_back(Ball(table_width/2 + table_xinit, table_height-15 + table_yinit, 25, kBlack, false));
   holes.push_back(Ball(table_width-15 + table_xinit, 15.0 + table_yinit, 25, kBlack, false));
-  holes.push_back(Ball(table_width-15 + table_xinit, table_height-18 + table_yinit, 25, kBlack, false));
+  holes.push_back(Ball(table_width-15 + table_xinit, table_height-15 + table_yinit, 25, kBlack, false));
 
   // Cueball Setup
   balls.push_back(Ball(150 + table_xinit, table_height/2 + table_yinit, 13, kWhite, false));
@@ -76,34 +76,72 @@ void TableSetup() {
 }
 
 void drawTable() {
-  glColor3f(0.545098, 0.270588, 0.0745098);
+  glColor3f(0.4666667, 0.23529411, 0.17254901);
   glBegin(GL_TRIANGLE_FAN);
-  glVertex2f(0.0+ table_xinit, 0.0+ table_yinit);
-  glVertex2f(20.0+ table_xinit, 0.0+ table_yinit);
-  glVertex2f(20.0+ table_xinit, table_height+ table_yinit);
-  glVertex2f(0.0+ table_xinit, table_height+ table_yinit);
+  glVertex2f(0.0+ table_xinit-15, 0.0+ table_yinit);
+  glVertex2f(15.0+ table_xinit, 0.0+ table_yinit);
+  glVertex2f(15.0+ table_xinit, table_height+ table_yinit);
+  glVertex2f(0.0+ table_xinit-15, table_height+ table_yinit);
   glEnd();
 
   glBegin(GL_TRIANGLE_FAN);
-  glVertex2f(0.0+ table_xinit, 0.0+ table_yinit);
-  glVertex2f(table_width+ table_xinit, 0.0+ table_yinit);
+  glVertex2f(0.0+ table_xinit, 0.0+ table_yinit-15);
+  glVertex2f(table_width+ table_xinit, 0.0+ table_yinit-15);
   glVertex2f(table_width+ table_xinit, 20.0+ table_yinit);
   glVertex2f(0.0+ table_xinit, 20.0+ table_yinit);
   glEnd();
 
   glBegin(GL_TRIANGLE_FAN);
-  glVertex2f(table_width+ table_xinit, 0.0+ table_yinit);
-  glVertex2f(table_width+ table_xinit, table_height+ table_yinit);
-  glVertex2f(table_width - 20+ table_xinit, table_height+ table_yinit);
-  glVertex2f(table_width - 20+ table_xinit, 0.0+ table_yinit);
+  glVertex2f(table_width+ table_xinit+15, 0.0+ table_yinit);
+  glVertex2f(table_width+ table_xinit+15, table_height+ table_yinit);
+  glVertex2f(table_width - 15+ table_xinit, table_height+ table_yinit);
+  glVertex2f(table_width - 15+ table_xinit, 0.0+ table_yinit);
   glEnd();
 
   glBegin(GL_TRIANGLE_FAN);
-  glVertex2f(table_width+ table_xinit, table_height+ table_yinit);
+  glVertex2f(table_width+ table_xinit, table_height+ table_yinit+15);
   glVertex2f(table_width+ table_xinit, table_height - 20+ table_yinit);
   glVertex2f(0.0+ table_xinit, table_height - 20+ table_yinit);
-  glVertex2f(0.0+ table_xinit, table_height+ table_yinit);
+  glVertex2f(0.0+ table_xinit, table_height+ table_yinit+15);
   glEnd();
+
+  glColor3f(0.25098039,0.431372549,0.07450980);
+  glBegin(GL_POLYGON);
+  glVertex2f(15.0+ table_xinit, 41.0+ table_yinit);
+  glVertex2f(30.0+ table_xinit, 53.0+ table_yinit);
+  glVertex2f(30.0+ table_xinit, table_height-53+ table_yinit);
+  glVertex2f(15.0+ table_xinit, table_height-41+ table_yinit);
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glVertex2f(table_width - 15.0+ table_xinit, 41.0+ table_yinit);
+  glVertex2f(table_width - 30.0+ table_xinit, 53.0+ table_yinit);
+  glVertex2f(table_width - 30.0+ table_xinit, table_height-53+ table_yinit);
+  glVertex2f(table_width - 15.0+ table_xinit, table_height-41+ table_yinit);
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glVertex2f(0.0+ table_xinit, 0.0+ table_yinit-15);
+  glVertex2f(table_width+ table_xinit, 0.0+ table_yinit-15);
+  glVertex2f(table_width+ table_xinit, 20.0+ table_yinit);
+  glVertex2f(0.0+ table_xinit, 20.0+ table_yinit);
+  glEnd();
+
+  /*glBegin(GL_LINES);
+  glVertex2f((table_width/2 + table_xinit) - 20, table_yinit);
+  glVertex2f((table_width/2 + table_xinit) - 20, table_height + table_yinit);
+  glVertex2f((table_xinit) + 40, table_yinit);
+  glVertex2f((table_xinit) + 40, table_height + table_yinit);
+  glVertex2f((table_xinit + table_width) - 40, table_yinit);
+  glVertex2f((table_xinit + table_width) - 40, table_height + table_yinit);
+  glVertex2f((table_xinit), table_yinit + table_height-40 );
+  glVertex2f((table_xinit + table_width), table_height-40 + table_yinit);
+  glVertex2f((table_xinit), table_yinit +40 );
+  glVertex2f((table_xinit + table_width), table_yinit + 40);
+  glVertex2f((table_width/2 + table_xinit) + 20, table_yinit);
+  glVertex2f((table_width/2 + table_xinit) + 20, table_height + table_yinit);
+  glEnd();*/
+
 }
 
 void drawPowerBar(){
@@ -230,7 +268,8 @@ void Display() {
   glClearColor(0.0, 0.0, 0.0, 0.0);
   glClear(GL_COLOR_BUFFER_BIT);
 
-  glColor3f(0, 0.4, 0.1);
+  //glColor3f(0, 0.4, 0.1);
+  glColor3f(0.35686274, 0.65490196, 0.0862745);
   glBegin(GL_POLYGON);
   glVertex2f(0.0 + table_xinit, 0.0 + table_yinit);
   glVertex2f(table_xinit + table_width, 0.0 + table_yinit);
@@ -255,6 +294,13 @@ void Display() {
   printString(200,20,1,1,0,cstrscore);
 
   if(freeBall) printString(400,20,1,1,0,"Free Ball");
+  if(ballsIsStopped())
+  {
+      string playerName = "Play ";
+        char *cstr = new char[playerName.length() + 1];
+        strcpy(cstr, playerName.c_str());
+        printString(20,50,1,1,0,cstr);
+  }
 
   drawTable();
   drawPowerBar();
