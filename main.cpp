@@ -8,6 +8,7 @@
 #include "ball.h"
 #include "common.h"
 #include "geometry.h"
+#include "imageLoader.h"
 
 using namespace std;
 
@@ -336,10 +337,10 @@ void Display1() {
 
 void MainMenuDisplay() {
   pageState = 0;
-  glClearColor(0, 0.4, 0.1, 0);
-  glClear(GL_COLOR_BUFFER_BIT);
 
-  printString(500,500,1,1,0,"ade");
+  loadtex("img/menu.png", window_width, window_height, 0, 0);
+  loadtex("img/btn_play.png", 211, 68, 400, 400);
+
   glFlush();
   glutSwapBuffers();
 }
