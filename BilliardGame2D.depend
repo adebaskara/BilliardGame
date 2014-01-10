@@ -67,3 +67,43 @@
 	"common.h"
 	"geometry.h"
 
+1389355159 source:d:\teknik informatika\grafkom\billiardgame\ball.cpp
+	<math.h>
+	"ball.h"
+	"common.h"
+	"geometry.h"
+	<vector>
+
+1389355159 d:\teknik informatika\grafkom\billiardgame\ball.h
+	<iostream>
+	"common.h"
+	"geometry.h"
+	<vector>
+
+1389355159 d:\teknik informatika\grafkom\billiardgame\common.h
+	<windows.h>
+	<OpenGL/gl.h>
+	<GLUT/glut.h>
+	<GL/gl.h>
+	<GL/glut.h>
+
+1389355159 d:\teknik informatika\grafkom\billiardgame\geometry.h
+	<cmath>
+
+1389357014 source:d:\teknik informatika\grafkom\billiardgame\main.cpp
+	<math.h>
+	<iostream>
+	<vector>
+	<string>
+	<cstring>
+	<sstream>
+	"ball.h"
+	"common.h"
+	"geometry.h"
+	"imageLoader.h"
+
+1215429208 d:\teknik informatika\grafkom\billiardgame\soil\soil.h
+
+1389357039 d:\teknik informatika\grafkom\billiardgame\imageloader.h
+	"soil/SOIL.h"
+
