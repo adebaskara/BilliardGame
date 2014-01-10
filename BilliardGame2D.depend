@@ -33,7 +33,7 @@
 	"common.h"
 	"geometry.h"
 
-1389343269 source:c:\users\ade_baskara\documents\billiardgame\ball.cpp
+1389359375 source:c:\users\ade_baskara\documents\billiardgame\ball.cpp
 	<math.h>
 	"ball.h"
 	"common.h"
@@ -46,7 +46,7 @@
 	"geometry.h"
 	<vector>
 
-1386028265 c:\users\ade_baskara\documents\billiardgame\common.h
+1389350018 c:\users\ade_baskara\documents\billiardgame\common.h
 	<windows.h>
 	<OpenGL/gl.h>
 	<GLUT/glut.h>
@@ -56,7 +56,7 @@
 1387295611 c:\users\ade_baskara\documents\billiardgame\geometry.h
 	<cmath>
 
-1389347135 source:c:\users\ade_baskara\documents\billiardgame\main.cpp
+1389356301 source:c:\users\ade_baskara\documents\billiardgame\main.cpp
 	<math.h>
 	<iostream>
 	<vector>

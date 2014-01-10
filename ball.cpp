@@ -61,29 +61,36 @@ bool isHoles(int x, int y, vector<Ball> holes)
     }
 }
 
+bool cekAtas(GLfloat x[2], GLint radius)
+{
+    return (x[1] - radius < 30 + table_yinit) && (((x[0] - radius < (table_width/2 + table_xinit) - 37) && (x[0] - radius > table_xinit + 55)) || ((x[0] - radius > (table_width/2 + table_xinit) + 37) && (x[0] - radius < table_xinit + table_width - 55)));
+}
+
+bool cekBawah(GLfloat x[2], GLint radius)
+{
+    return (x[1] + radius > table_height - 30 + table_yinit) && ((x[0] - radius < (table_width/2 + table_xinit) - 37) || (x[0] - radius > (table_width/2 + table_xinit) + 37));
+}
+
+
 void Ball::checkBounds(vector<Ball> holes) {
   // Horizontal Bounds
-  if (x[0] - radius < table_xinit + 20) {
-    x[0] = radius + table_xinit + 20;
+  if (x[0] - radius < table_xinit + 30) {
+    x[0] = radius + table_xinit + 30;
     v.x[0] = abs(v.x[0]);
     cout << "kanan";
-  } else if (x[0] + radius > table_width - 20 + table_xinit) {
-     x[0] = table_width - 20 - radius + table_xinit;
+  } else if (x[0] + radius > table_width - 30 + table_xinit) {
+     x[0] = table_width - 30 - radius + table_xinit;
     v.x[0] = -abs(v.x[0]);
     cout << "kiri";
   }
 
   // Vertical Bounds
-  if ((x[1] - radius < 20 + table_yinit) && ((x[0] - radius < (table_width/2 + table_xinit) - 20) || (x[0] - radius > (table_width/2 + table_xinit) + 20))){
-     x[1] = radius + 20  + table_yinit;
+  if (cekAtas(x,radius)){
+     x[1] = radius + 30  + table_yinit;
     v.x[1] = abs(v[1]);
-    cout << "atas" << x[0]-radius << endl;
-    cout << table_width/2 + table_xinit - 25 << endl;
-    cout << table_width/2 + table_xinit + 25 << endl;
-  } else if ((x[1] + radius > table_height - 20 + table_yinit) && ((x[0] - radius < (table_width/2 + table_xinit) - 20) || (x[0] - radius > (table_width/2 + table_xinit) + 20))) {
-     x[1] = table_height - 20 - radius + table_yinit;
+  } else if (cekBawah(x,radius)) {
+     x[1] = table_height - 30 - radius + table_yinit;
     v.x[1] = -abs(v.x[1]);
-    cout << "bawah" << x[0] << endl;
   }
 }
 

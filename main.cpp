@@ -78,69 +78,90 @@ void TableSetup() {
 void drawTable() {
   glColor3f(0.4666667, 0.23529411, 0.17254901);
   glBegin(GL_TRIANGLE_FAN);
-  glVertex2f(0.0+ table_xinit-15, 0.0+ table_yinit);
+  glVertex2f(0.0+ table_xinit-20, 0.0+ table_yinit);
   glVertex2f(15.0+ table_xinit, 0.0+ table_yinit);
   glVertex2f(15.0+ table_xinit, table_height+ table_yinit);
-  glVertex2f(0.0+ table_xinit-15, table_height+ table_yinit);
+  glVertex2f(0.0+ table_xinit-20, table_height+ table_yinit);
   glEnd();
 
   glBegin(GL_TRIANGLE_FAN);
-  glVertex2f(0.0+ table_xinit, 0.0+ table_yinit-15);
-  glVertex2f(table_width+ table_xinit, 0.0+ table_yinit-15);
-  glVertex2f(table_width+ table_xinit, 20.0+ table_yinit);
-  glVertex2f(0.0+ table_xinit, 20.0+ table_yinit);
+  glVertex2f(0.0+ table_xinit, 0.0+ table_yinit-20);
+  glVertex2f(table_width+ table_xinit, 0.0+ table_yinit-20);
+  glVertex2f(table_width+ table_xinit, 15.0+ table_yinit);
+  glVertex2f(0.0+ table_xinit, 15.0+ table_yinit);
   glEnd();
 
   glBegin(GL_TRIANGLE_FAN);
-  glVertex2f(table_width+ table_xinit+15, 0.0+ table_yinit);
-  glVertex2f(table_width+ table_xinit+15, table_height+ table_yinit);
+  glVertex2f(table_width+ table_xinit+20, 0.0+ table_yinit);
+  glVertex2f(table_width+ table_xinit+20, table_height+ table_yinit);
   glVertex2f(table_width - 15+ table_xinit, table_height+ table_yinit);
   glVertex2f(table_width - 15+ table_xinit, 0.0+ table_yinit);
   glEnd();
 
   glBegin(GL_TRIANGLE_FAN);
-  glVertex2f(table_width+ table_xinit, table_height+ table_yinit+15);
-  glVertex2f(table_width+ table_xinit, table_height - 20+ table_yinit);
-  glVertex2f(0.0+ table_xinit, table_height - 20+ table_yinit);
-  glVertex2f(0.0+ table_xinit, table_height+ table_yinit+15);
+  glVertex2f(table_width+ table_xinit, table_height+ table_yinit+20);
+  glVertex2f(table_width+ table_xinit, table_height - 15+ table_yinit);
+  glVertex2f(0.0+ table_xinit, table_height - 15+ table_yinit);
+  glVertex2f(0.0+ table_xinit, table_height+ table_yinit+20);
   glEnd();
 
   glColor3f(0.25098039,0.431372549,0.07450980);
   glBegin(GL_POLYGON);
   glVertex2f(15.0+ table_xinit, 41.0+ table_yinit);
-  glVertex2f(30.0+ table_xinit, 53.0+ table_yinit);
-  glVertex2f(30.0+ table_xinit, table_height-53+ table_yinit);
+  glVertex2f(30.0+ table_xinit, 55.0+ table_yinit);
+  glVertex2f(30.0+ table_xinit, table_height-55+ table_yinit);
   glVertex2f(15.0+ table_xinit, table_height-41+ table_yinit);
   glEnd();
 
   glBegin(GL_POLYGON);
   glVertex2f(table_width - 15.0+ table_xinit, 41.0+ table_yinit);
-  glVertex2f(table_width - 30.0+ table_xinit, 53.0+ table_yinit);
-  glVertex2f(table_width - 30.0+ table_xinit, table_height-53+ table_yinit);
+  glVertex2f(table_width - 30.0+ table_xinit, 55.0+ table_yinit);
+  glVertex2f(table_width - 30.0+ table_xinit, table_height-55+ table_yinit);
   glVertex2f(table_width - 15.0+ table_xinit, table_height-41+ table_yinit);
   glEnd();
 
   glBegin(GL_POLYGON);
-  glVertex2f(0.0+ table_xinit, 0.0+ table_yinit-15);
-  glVertex2f(table_width+ table_xinit, 0.0+ table_yinit-15);
-  glVertex2f(table_width+ table_xinit, 20.0+ table_yinit);
-  glVertex2f(0.0+ table_xinit, 20.0+ table_yinit);
+  glVertex2f(0.0+ table_xinit + 41, 0.0+ table_yinit+15);
+  glVertex2f(table_width/2  + table_xinit-25, 0.0+ table_yinit+15);
+  glVertex2f(table_width/2  + table_xinit-37, 20.0+ table_yinit+10);
+  glVertex2f(0.0+ table_xinit + 55, 20.0+ table_yinit+10);
   glEnd();
 
-  /*glBegin(GL_LINES);
-  glVertex2f((table_width/2 + table_xinit) - 20, table_yinit);
-  glVertex2f((table_width/2 + table_xinit) - 20, table_height + table_yinit);
-  glVertex2f((table_xinit) + 40, table_yinit);
-  glVertex2f((table_xinit) + 40, table_height + table_yinit);
-  glVertex2f((table_xinit + table_width) - 40, table_yinit);
-  glVertex2f((table_xinit + table_width) - 40, table_height + table_yinit);
-  glVertex2f((table_xinit), table_yinit + table_height-40 );
-  glVertex2f((table_xinit + table_width), table_height-40 + table_yinit);
-  glVertex2f((table_xinit), table_yinit +40 );
-  glVertex2f((table_xinit + table_width), table_yinit + 40);
-  glVertex2f((table_width/2 + table_xinit) + 20, table_yinit);
-  glVertex2f((table_width/2 + table_xinit) + 20, table_height + table_yinit);
-  glEnd();*/
+  glBegin(GL_POLYGON);
+  glVertex2f(table_width/2  + table_xinit+25, 0.0+ table_yinit+15);
+  glVertex2f(table_width + table_xinit-41, 0.0+ table_yinit+15);
+  glVertex2f(table_width + table_xinit-55, 20.0+ table_yinit+10);
+  glVertex2f(table_width/2  + table_xinit+37, 20.0+ table_yinit+10);
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glVertex2f(0.0+ table_xinit + 41, 0.0+ table_yinit-15+table_height);
+  glVertex2f(table_width/2  + table_xinit-25, 0.0+ table_yinit-15+table_height);
+  glVertex2f(table_width/2  + table_xinit-37, table_yinit-30+table_height);
+  glVertex2f(0.0+ table_xinit + 55, table_yinit-30+table_height);
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glVertex2f(table_width/2  + table_xinit+25, 0.0+ table_yinit-15+table_height);
+  glVertex2f(table_width + table_xinit-41, 0.0+ table_yinit-15+table_height);
+  glVertex2f(table_width + table_xinit-55, table_yinit-30+table_height);
+  glVertex2f(table_width/2  + table_xinit+37, table_yinit-30+table_height);
+  glEnd();
+
+  glBegin(GL_LINES);
+  glVertex2f((table_width/2 + table_xinit) - 37, table_yinit);
+  glVertex2f((table_width/2 + table_xinit) - 37, table_height + table_yinit);
+  glVertex2f((table_xinit) + 55, table_yinit);
+  glVertex2f((table_xinit) + 55, table_height + table_yinit);
+  glVertex2f((table_xinit + table_width) - 55, table_yinit);
+  glVertex2f((table_xinit + table_width) - 55, table_height + table_yinit);
+  glVertex2f((table_xinit), table_yinit + table_height- 55 );
+  glVertex2f((table_xinit + table_width), table_height- 55 + table_yinit);
+  glVertex2f((table_xinit), table_yinit + 55 );
+  glVertex2f((table_xinit + table_width), table_yinit + 55);
+  glVertex2f((table_width/2 + table_xinit) + 37, table_yinit);
+  glVertex2f((table_width/2 + table_xinit) + 37, table_height + table_yinit);
+  glEnd();
 
 }
 
