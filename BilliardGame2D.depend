@@ -67,20 +67,20 @@
 	"common.h"
 	"geometry.h"
 
-1389355159 source:d:\teknik informatika\grafkom\billiardgame\ball.cpp
+1389366989 source:d:\teknik informatika\grafkom\billiardgame\ball.cpp
 	<math.h>
 	"ball.h"
 	"common.h"
 	"geometry.h"
 	<vector>
 
-1389355159 d:\teknik informatika\grafkom\billiardgame\ball.h
+1389365879 d:\teknik informatika\grafkom\billiardgame\ball.h
 	<iostream>
 	"common.h"
 	"geometry.h"
 	<vector>
 
-1389355159 d:\teknik informatika\grafkom\billiardgame\common.h
+1389368124 d:\teknik informatika\grafkom\billiardgame\common.h
 	<windows.h>
 	<OpenGL/gl.h>
 	<GLUT/glut.h>
@@ -90,7 +90,7 @@
 1389355159 d:\teknik informatika\grafkom\billiardgame\geometry.h
 	<cmath>
 
-1389361031 source:d:\teknik informatika\grafkom\billiardgame\main.cpp
+1389371208 source:d:\teknik informatika\grafkom\billiardgame\main.cpp
 	<math.h>
 	<iostream>
 	<vector>
