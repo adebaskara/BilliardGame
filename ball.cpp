@@ -130,6 +130,11 @@ void Ball::setVelocity(GLfloat vx, GLfloat vy) {
   a[1] = deaccel(v.x[1]);
 }
 
+void Ball::setxy(int x, int y)
+{
+
+}
+
 void Ball::elasticCollision(Ball *other) {
   GLfloat position[2], velocity[2];
   GLfloat dot, d, a;

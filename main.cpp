@@ -29,6 +29,7 @@ bool onShot = true;
 int scorePlayer[999];
 bool freeBall = false;
 int btn_menu_stat = 0;
+int n_goal = 0;
 
 Color colors[] = {kYellow, kBlue, kBrown, kViolet, kOrange, kGreen, kRed};
 
@@ -89,6 +90,23 @@ void TableSetup() {
 }
 
 void drawTable() {
+  glBegin(GL_POLYGON);
+      glColor3f(0.7, 0.7, 0.7);
+      glVertex2d(0 + 100, 0 + 515);
+      glVertex2d(0 + 100, 40 + 515);
+      glVertex2d(610 + 100, 40 + 515);
+      glVertex2d(610 + 100, 0 + 515);
+  glEnd();
+
+  glBegin(GL_POLYGON);
+      glColor3f(0.9, 0.9, 0.9);
+      glVertex2d(0 + 100 + 5, 0 + 515 + 5);
+      glVertex2d(0 + 100 + 5, 40 + 515 - 5);
+      glVertex2d(610 + 100 - 5, 40 + 515 - 5);
+      glVertex2d(610 + 100 - 5, 0 + 515 + 5);
+  glEnd();
+
+  loadtex("img/ball_power.png", 610, 10, 100, 570);
   glColor3f(0.4666667, 0.23529411, 0.17254901);
   glBegin(GL_TRIANGLE_FAN);
   glVertex2f(0.0+ table_xinit-20, 0.0+ table_yinit);
@@ -252,8 +270,11 @@ void score(int index) {
         freeBall = true;
         break;
       }
-      balls[index].x[0] = holes[i].x[0];
-      balls[index].x[1] = holes[i].x[1];
+
+      balls[index].x[0] = 125 + n_goal*40;
+      balls[index].x[1] = 535;
+      n_goal++;
+
       balls[index].setVelocity(0, 0);
       scored.push_back(balls[index]);
       balls.erase(balls.begin()+index);
@@ -329,7 +350,8 @@ void Display() {
   if(freeBall) printString(400,30,1,1,0,"Free Ball");
 
   drawTable();
-  drawPowerBar();
+
+  //drawPowerBar();
 
   for (int i = 0; i < holes.size(); i++)
     holes[i].draw();

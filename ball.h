@@ -31,6 +31,7 @@ class Ball {
   void elasticCollision(Ball *other);
   void update(float elapsed_time, vector<Ball> holes);
   void setVelocity(GLfloat vx, GLfloat vy);
+  void setxy(int x, int y);
 };
 
 #endif
