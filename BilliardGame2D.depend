@@ -90,7 +90,7 @@
 1389355159 d:\teknik informatika\grafkom\billiardgame\geometry.h
 	<cmath>
 
-1389357014 source:d:\teknik informatika\grafkom\billiardgame\main.cpp
+1389361031 source:d:\teknik informatika\grafkom\billiardgame\main.cpp
 	<math.h>
 	<iostream>
 	<vector>
@@ -104,6 +104,6 @@
 
 1215429208 d:\teknik informatika\grafkom\billiardgame\soil\soil.h
 
-1389357039 d:\teknik informatika\grafkom\billiardgame\imageloader.h
+1389357279 d:\teknik informatika\grafkom\billiardgame\imageloader.h
 	"soil/SOIL.h"
 
