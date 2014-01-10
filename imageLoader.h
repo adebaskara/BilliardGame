@@ -7,6 +7,9 @@
 
 GLuint loadtex( string texname, int width, int height, int x, int y )
 {
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     GLuint tex_2d = SOIL_load_OGL_texture (
         texname.c_str(),
         SOIL_LOAD_AUTO,

@@ -28,6 +28,7 @@ bool playerScored = false;
 bool onShot = true;
 int scorePlayer[999];
 bool freeBall = false;
+int btn_menu_stat = 0;
 
 Color colors[] = {kYellow, kBlue, kBrown, kViolet, kOrange, kGreen, kRed};
 
@@ -265,7 +266,6 @@ void idle(void) {
 }
 
 void Display() {
-  pageState = 2;
   glClearColor(0.0, 0.0, 0.0, 0.0);
   glClear(GL_COLOR_BUFFER_BIT);
 
@@ -339,7 +339,9 @@ void MainMenuDisplay() {
   pageState = 0;
 
   loadtex("img/menu.png", window_width, window_height, 0, 0);
-  loadtex("img/btn_play.png", 211, 68, 400, 400);
+  loadtex("img/btn_play.png", 211, 68, 450, 380);
+  loadtex("img/btn_help.png", 107, 49, 570, 460);
+  loadtex("img/btn_exit.png", 131, 69, 630, 20);
 
   glFlush();
   glutSwapBuffers();
@@ -356,7 +358,39 @@ void drawButton(int x, int y, int w, int h)
 }
 
 void Mouse(int button, int state, int x, int y) {
-  if (button == GLUT_LEFT_BUTTON && pageState==2 && ballsIsStopped()) {
+  if(button == GLUT_LEFT_BUTTON && pageState==0)
+  {
+      if (state == GLUT_DOWN) {
+          mouse_down[0] = x;
+          mouse_down[1] = y;
+
+          cout << x << " " << y << endl;
+
+          // Play Button
+          if(x >= 456 && x <= 655 && y >= 393 && y <= 437)
+          {
+              glutDisplayFunc(Display);
+              btn_menu_stat = 1;
+          }
+          // Exit Button
+          else if(x >= 574 && x <= 671 && y >= 472 && y <= 498)
+          {
+              glutDisplayFunc(Display1);
+          }
+          // Exit Button
+          else if(x >= 634 && x <= 751 && y >= 30 && y <= 77)
+          {
+              exit(EXIT_SUCCESS);
+          }
+      }
+
+      if(state == GLUT_UP && btn_menu_stat == 1 ) {
+          btn_menu_stat = 0;
+          pageState = 2;
+      }
+
+  }
+  else if (button == GLUT_LEFT_BUTTON && pageState==2 && ballsIsStopped()) {
     if (state == GLUT_DOWN) {
       mouse_down[0] = x;
       mouse_down[1] = y;
