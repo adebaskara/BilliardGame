@@ -47,6 +47,7 @@ const Color kBrown = Color(0.647, 0.1647, 0.1647);
 const Color kOrange = Color(1, 0.498039, 0.313725);
 const Color kBlack = Color(0, 0, 0);
 const Color kWhite = Color(1, 1, 1);
+const Color kDarkWhite = Color(0.8, 0.8, 0.8);
 
 #endif
 

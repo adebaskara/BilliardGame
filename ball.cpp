@@ -7,7 +7,7 @@
 
 
 Ball::Ball(GLfloat _x, GLfloat _y,
-           GLint _r, Color _c, bool _solid): radius(_r), c(_c), solid(_solid) {
+           GLint _r, Color _c, bool _solid, bool _is_ball): radius(_r), c(_c), solid(_solid), is_ball(_is_ball) {
   x[0] = _x;
   x[1] = _y;
   v = Vector(0, 0);
@@ -17,25 +17,45 @@ Ball::Ball(GLfloat _x, GLfloat _y,
 
 void Ball::draw() {
   glBegin(GL_TRIANGLE_FAN);
-  for (int angle = 0; angle < 360; angle += 5) {
+
+  for (int angle = 1; angle < 360; angle += 1) {
     int xn = x[0] + radius*sin(PI*angle/180);
     int yn = x[1] + radius*cos(PI*angle/180);
+
     glColor3fv(c);
+
     glVertex2f(xn, yn);
   }
   glEnd();
 
   if (solid) {
     glBegin(GL_TRIANGLE_FAN);
-    for (int angle = 0; angle < 360; angle += 5) {
+
+    for (int angle = 0; angle < 360; angle += 1) {
       int xn = x[0] + (radius/2)*sin(PI*angle/180);
       int yn = x[1] + (radius/2)*cos(PI*angle/180);
-      glColor3f(1, 1, 1);
+      glColor4f(1.0, 1.0, 1.0, 0.6);
       glVertex2f(xn, yn);
     }
   }
 
   glEnd();
+
+  if(is_ball)
+  {
+      glBegin(GL_TRIANGLE_FAN);
+        int xn = x[0] + (radius/1.1)*sin(PI*0/180);
+        int yn = x[1] + (radius/1.9)*cos(PI*0/180);
+        glColor4f(1.0, 1.0, 1.0, 0.5);
+        glVertex2f(xn, yn + 4);
+        for (int angle = 1; angle < 360; angle += 1) {
+            int xn = x[0] + (radius/1.1)*sin(PI*angle/180);
+            int yn = x[1] + (radius/1.9)*cos(PI*angle/180);
+            glColor4f(1.0, 1.0, 1.0, 0.0);
+            glVertex2f(xn, yn + 4);
+        }
+        glEnd();
+  }
 }
 
 bool Ball::isStopped(){

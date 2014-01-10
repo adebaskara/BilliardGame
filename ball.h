@@ -10,7 +10,7 @@ using namespace std;
 
 class Ball {
  public:
-  Ball(GLfloat _x, GLfloat _y, GLint _r, Color _c, bool _solid);
+  Ball(GLfloat _x, GLfloat _y, GLint _r, Color _c, bool _solid, bool is_ball);
 
   operator GLfloat*() { return x; }
   GLint operator[](int i) const { return x[i]; }
@@ -21,6 +21,7 @@ class Ball {
   GLfloat mass;
   GLint radius;
   bool solid;
+  bool is_ball;
 
   void draw();
   bool isStopped();

@@ -39,21 +39,32 @@ void printString(int x, int y, float r, float g, float b, char *str)
   int len, i;
   len = (int)strlen(str);
   for (i = 0; i < len; i++) {
-    glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, str[i]);
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, str[i]);
   }
 }
 
 void TableSetup() {
   // Pocket Setup
-  holes.push_back(Ball(15.0 + table_xinit, 15.0 + table_yinit, 25, kBlack, false));
-  holes.push_back(Ball(15.0 + table_xinit, table_height-15 + table_yinit, 25, kBlack, false));
-  holes.push_back(Ball(table_width/2 + table_xinit, 15.0 + table_yinit, 25, kBlack, false));
-  holes.push_back(Ball(table_width/2 + table_xinit, table_height-15 + table_yinit, 25, kBlack, false));
-  holes.push_back(Ball(table_width-15 + table_xinit, 15.0 + table_yinit, 25, kBlack, false));
-  holes.push_back(Ball(table_width-15 + table_xinit, table_height-15 + table_yinit, 25, kBlack, false));
+  holes.push_back(Ball(15.0 + table_xinit - 7, 15.0 + table_yinit - 7, 30, kDarkWhite, false, false));
+  holes.push_back(Ball(15.0 + table_xinit, 15.0 + table_yinit, 25, kBlack, false, false));
+
+  holes.push_back(Ball(15.0 + table_xinit - 7, table_height-15 + 7 + table_yinit, 30, kDarkWhite, false, false));
+  holes.push_back(Ball(15.0 + table_xinit, table_height-15 + table_yinit, 25, kBlack, false, false));
+
+  holes.push_back(Ball(table_width/2 + table_xinit, 15.0 + table_yinit - 9, 28, kDarkWhite, false, false));
+  holes.push_back(Ball(table_width/2 + table_xinit, 15.0 + table_yinit, 25, kBlack, false, false));
+
+  holes.push_back(Ball(table_width/2 + table_xinit, table_height-15 + 9 + table_yinit, 28, kDarkWhite, false, false));
+  holes.push_back(Ball(table_width/2 + table_xinit, table_height-15 + table_yinit, 25, kBlack, false, false));
+
+  holes.push_back(Ball(table_width-15 + 7 + table_xinit, 15.0 - 7 + table_yinit, 30, kDarkWhite, false, false));
+  holes.push_back(Ball(table_width-15 + table_xinit, 15.0 + table_yinit, 25, kBlack, false, false));
+
+  holes.push_back(Ball(table_width-15 + 7 + table_xinit, table_height-15 + 7 + table_yinit, 30, kDarkWhite, false, false));
+  holes.push_back(Ball(table_width-15 + table_xinit, table_height-15 + table_yinit, 25, kBlack, false, false));
 
   // Cueball Setup
-  balls.push_back(Ball(150 + table_xinit, table_height/2 + table_yinit, 13, kWhite, false));
+  balls.push_back(Ball(150 + table_xinit, table_height/2 + table_yinit, 13, kWhite, false, false));
 
   // 15-ball Billiards Setup
   int ball_num = 1;
@@ -62,15 +73,15 @@ void TableSetup() {
       if (ball_num < 8)
         balls.push_back(Ball(500+(26*i) + table_xinit,
                              (table_height/2)-(26*i/2)+(27*j) + table_yinit,
-                             13, colors[(ball_num - 1)%7], true) );
+                             13, colors[(ball_num - 1)%7], true, true) );
       else if (ball_num == 8)
         balls.push_back(Ball(500+(26*i) + table_xinit,
                              (table_height/2)-(26*i/2)+(27*j)+ table_yinit,
-                             13, kBlack, false) );
+                             13, kBlack, false, true) );
       else
         balls.push_back(Ball(500+(26*i) + table_xinit,
                              (table_height/2)-(26*i/2)+(27*j)+ table_yinit,
-                             13, colors[(ball_num - 1)%7], false) );
+                             13, colors[(ball_num - 1)%7], false, true) );
 
       ball_num++;
     }
@@ -237,7 +248,7 @@ void score(int index) {
   for (int i = 0; i < holes.size(); i++) {
     if (balls[index].collideToHole(&holes[i])) {
       if(index==0) { // <-- white balls become free ball
-        balls[index] = Ball(150 + table_xinit, table_height/2 + table_yinit, 13, kWhite, false);
+        balls[index] = Ball(150 + table_xinit, table_height/2 + table_yinit, 13, kWhite, false, true);
         freeBall = true;
         break;
       }
@@ -305,7 +316,7 @@ void Display() {
   playerName.append(ss.str());
   char *cstr = new char[playerName.length() + 1];
   strcpy(cstr, playerName.c_str());
-  printString(20,20,1,1,0,cstr);
+  printString(20,30,1,1,0,cstr);
 
   string scoreBoard = "Score: ";
   stringstream ss1;
@@ -313,16 +324,9 @@ void Display() {
   scoreBoard.append(ss1.str());
   char *cstrscore = new char[playerName.length() + 1];
   strcpy(cstrscore, scoreBoard.c_str());
-  printString(200,20,1,1,0,cstrscore);
+  printString(200,30,1,1,0,cstrscore);
 
-  if(freeBall) printString(400,20,1,1,0,"Free Ball");
-  if(ballsIsStopped())
-  {
-      string playerName = "Play ";
-        char *cstr = new char[playerName.length() + 1];
-        strcpy(cstr, playerName.c_str());
-        printString(20,50,1,1,0,cstr);
-  }
+  if(freeBall) printString(400,30,1,1,0,"Free Ball");
 
   drawTable();
   drawPowerBar();
@@ -333,6 +337,29 @@ void Display() {
     balls[i].draw();
   for (int i = 0; i < scored.size(); i++)
     scored[i].draw();
+
+  if(ballsIsStopped())
+  {
+      string playerName = "Go!!!!!! ";
+        char *cstr = new char[playerName.length() + 1];
+        strcpy(cstr, playerName.c_str());
+        printString(20,60,1,1,0,cstr);
+  }
+  else
+  {
+      glColor4f(0, 0, 0, 0.4);
+      glBegin(GL_POLYGON);
+        glVertex2d(0,0);
+        glVertex2d(window_width,0);
+        glVertex2d(window_width,window_height);
+        glVertex2d(0,window_height);
+      glEnd();
+
+      string playerName = "Wait!!!!!! ";
+        char *cstr = new char[playerName.length() + 1];
+        strcpy(cstr, playerName.c_str());
+        printString(360, 300,1,1,0,cstr);
+  }
 
   if (draw_line == DRAW_SHOT && glutGet(GLUT_ELAPSED_TIME) - shot_time > 25) {
     draw_line = DRAW_NULL;
