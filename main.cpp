@@ -347,10 +347,9 @@ void Display() {
 
 void Display1() {
   pageState = 1;
-  glClearColor(0, 0.4, 0.1, 0);
-  glClear(GL_COLOR_BUFFER_BIT);
 
-  drawTable();
+  loadtex("img/help.png", window_width, window_height, 0, 0);
+  loadtex("img/btn_back.png", 154, 84, 35, 50);
 
   glFlush();
   glutSwapBuffers();
@@ -385,15 +384,13 @@ void Mouse(int button, int state, int x, int y) {
           mouse_down[0] = x;
           mouse_down[1] = y;
 
-          cout << x << " " << y << endl;
-
           // Play Button
           if(x >= 456 && x <= 655 && y >= 393 && y <= 437)
           {
               glutDisplayFunc(Display);
               btn_menu_stat = 1;
           }
-          // Exit Button
+          // Help Button
           else if(x >= 574 && x <= 671 && y >= 472 && y <= 498)
           {
               glutDisplayFunc(Display1);
@@ -408,6 +405,24 @@ void Mouse(int button, int state, int x, int y) {
       if(state == GLUT_UP && btn_menu_stat == 1 ) {
           btn_menu_stat = 0;
           pageState = 2;
+      }
+
+  }
+  else if(button == GLUT_LEFT_BUTTON && pageState==1)
+  {
+      if (state == GLUT_DOWN) {
+          mouse_down[0] = x;
+          mouse_down[1] = y;
+
+          // Back Button
+          if(x >= 57 && x <= 186 && y >= 75 && y <= 117)
+          {
+              glutDisplayFunc(MainMenuDisplay);
+          }
+      }
+
+      if(state == GLUT_UP && btn_menu_stat == 1 ) {
+          pageState = 0;
       }
 
   }
