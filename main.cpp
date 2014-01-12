@@ -37,6 +37,7 @@ int helpHover = 0;
 int endGame = false;
 bool pause = false;
 bool mouseWithBall = false;
+int currentHelp = 0;
 
 Color colors[] = {kYellow, kBlue, kBrown, kViolet, kOrange, kGreen, kRed};
 void *fonts[] =
@@ -562,8 +563,20 @@ void ConfDisplay()
 void HelpDisplay() {
   pageState = 1;
 
-  loadtex("img/help.png", window_width, window_height, 0, 0);
+  stringstream convert;
+  convert << currentHelp;
+
+  string str1 = "img/help";
+  string index = convert.str();
+  string str2 = ".png";
+  string str = "";
+  str.append(str1);
+  str.append(index);
+  str.append(str2);
+
+  loadtex(str, window_width, window_height, 0, 0);
   loadtex("img/btn_back.png", 154, 84, 35, 50);
+  loadtex("img/btn_next.png", 111, 30, 630, 525);
 
   glFlush();
   glutSwapBuffers();
@@ -611,6 +624,7 @@ void Mouse(int button, int state, int x, int y) {
           // Help Button
           else if(x >= 574 && x <= 671 && y >= 472 && y <= 498)
           {
+              currentHelp = 0;
               glutDisplayFunc(HelpDisplay);
           }
           // Exit Button
@@ -631,6 +645,11 @@ void Mouse(int button, int state, int x, int y) {
           if(x >= 57 && x <= 186 && y >= 75 && y <= 117)
           {
               glutDisplayFunc(MainMenuDisplay);
+          }
+          else if(x >= 637 && x <= 733 && y >= 525 && y <= 550)
+          {
+              currentHelp = (currentHelp+1)%4;
+              glutDisplayFunc(HelpDisplay);
           }
       }
   }
