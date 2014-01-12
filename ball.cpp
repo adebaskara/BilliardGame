@@ -4,15 +4,31 @@
 #include "common.h"
 #include "geometry.h"
 #include <vector>
+#include <cstring>
+#include <string>
+#include <sstream>
 
 
 Ball::Ball(GLfloat _x, GLfloat _y,
-           GLint _r, Color _c, bool _solid, bool _is_ball): radius(_r), c(_c), solid(_solid), is_ball(_is_ball) {
+           GLint _r, Color _c, bool _solid, bool _is_ball, int ballNumber, Color cNumber): radius(_r), c(_c), solid(_solid), is_ball(_is_ball) {
   x[0] = _x;
   x[1] = _y;
   v = Vector(0, 0);
   a[0] = a[1] = 0;
   mass = 1;
+  number = ballNumber;
+  numberColor = cNumber;
+}
+
+void printStringBall(int x, int y, Color numberColor, char *str)
+{
+  glColor3fv(numberColor);
+  glRasterPos2f(x, y);
+  int len, i;
+  len = (int)strlen(str);
+  for (i = 0; i < len; i++) {
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, str[i]);
+  }
 }
 
 void Ball::draw() {
@@ -56,6 +72,16 @@ void Ball::draw() {
         }
         glEnd();
   }
+
+  string ballNumber;
+  stringstream ss;
+  ss << number;
+  ballNumber.append(ss.str());
+  char *cstr = new char[ballNumber.length() + 1];
+  strcpy(cstr, ballNumber.c_str());
+  if(number<10)
+    printStringBall(x[0]-5,x[1]+4,numberColor,cstr);
+  else printStringBall(x[0]-8,x[1]+4,numberColor,cstr);
 }
 
 bool Ball::isStopped(){
@@ -72,43 +98,45 @@ void Ball::update(float elapsed_time, vector<Ball> holes) {
   checkBounds(holes);
 }
 
-bool isHoles(int x, int y, vector<Ball> holes)
-{
-    bool yes = false;
-    for(int i=0; i<holes.size(); i++)
-    {
-
-    }
-}
-
 bool cekAtas(GLfloat x[2], GLint radius)
 {
-    return (x[1] - radius < 30 + table_yinit) && (((x[0] - radius < (table_width/2 + table_xinit) - 37) && (x[0] - radius > table_xinit + 55)) || ((x[0] - radius > (table_width/2 + table_xinit) + 37) && (x[0] - radius < table_xinit + table_width - 55)));
+    return (x[1] - radius < 30 + table_yinit) && (((x[0] - radius < (table_width/2 + table_xinit) - 37) && (x[0] - radius > table_xinit + 35)) || ((x[0] + radius > (table_width/2 + table_xinit) + 37) && (x[0] + radius < table_xinit + table_width - 35)));
 }
 
 bool cekBawah(GLfloat x[2], GLint radius)
 {
-    return (x[1] + radius > table_height - 30 + table_yinit) && ((x[0] - radius < (table_width/2 + table_xinit) - 37) || (x[0] - radius > (table_width/2 + table_xinit) + 37));
+    return (x[1] + radius > table_height - 30 + table_yinit) && (((x[0] - radius < (table_width/2 + table_xinit) - 37) && (x[0] - radius > table_xinit + 35)) || ((x[0] + radius > (table_width/2 + table_xinit) + 37) && (x[0] + radius < table_xinit + table_width - 35)));
 }
 
+bool cekKiri(GLfloat x[2], GLint radius)
+{
+    return ((x[0] - radius < table_xinit + 30) && ((x[1] - radius > table_yinit + 35) && (x[1] + radius < table_yinit + table_height - 35)));
+}
+
+bool cekKanan(GLfloat x[2], GLint radius)
+{
+    return ((x[0] + radius > table_width - 30 + table_xinit)  && ((x[1] - radius > table_yinit + 35) && (x[1] + radius < table_yinit + table_height - 35)));;
+}
 
 void Ball::checkBounds(vector<Ball> holes) {
   // Horizontal Bounds
-  if (x[0] - radius < table_xinit + 30) {
+  if (cekKiri(x, radius)) {
+    PlaySound("sfx/Ball_Hit_Table.wav", NULL, SND_ASYNC|SND_FILENAME);
     x[0] = radius + table_xinit + 30;
     v.x[0] = abs(v.x[0]);
-    cout << "kanan";
-  } else if (x[0] + radius > table_width - 30 + table_xinit) {
+  } else if (cekKanan(x, radius)) {
+     PlaySound("sfx/Ball_Hit_Table.wav", NULL, SND_ASYNC|SND_FILENAME);
      x[0] = table_width - 30 - radius + table_xinit;
     v.x[0] = -abs(v.x[0]);
-    cout << "kiri";
   }
 
   // Vertical Bounds
   if (cekAtas(x,radius)){
+     PlaySound("sfx/Ball_Hit_Table.wav", NULL, SND_ASYNC|SND_FILENAME);
      x[1] = radius + 30  + table_yinit;
     v.x[1] = abs(v[1]);
   } else if (cekBawah(x,radius)) {
+     PlaySound("sfx/Ball_Hit_Table.wav", NULL, SND_ASYNC|SND_FILENAME);
      x[1] = table_height - 30 - radius + table_yinit;
     v.x[1] = -abs(v.x[1]);
   }
@@ -130,15 +158,10 @@ void Ball::setVelocity(GLfloat vx, GLfloat vy) {
   a[1] = deaccel(v.x[1]);
 }
 
-void Ball::setxy(int x, int y)
-{
-
-}
-
 void Ball::elasticCollision(Ball *other) {
   GLfloat position[2], velocity[2];
   GLfloat dot, d, a;
-
+  PlaySound("sfx/Hit_Other_Ball.wav", NULL, SND_ASYNC|SND_FILENAME);
   position[0] = other->x[0] - x[0];
   position[1] = other->x[1] - x[1];
   velocity[0] = other->v.x[0] - v.x[0];

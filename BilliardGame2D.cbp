@@ -15,9 +15,11 @@
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
+					<Add library="SOIL" />
 					<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\libglu32.a" />
 					<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\libopengl32.a" />
 					<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\libfreeglut.a" />
+					<Add library="C:\Program Files (x86)\CodeBlocks\MinGW\lib\libwinmm.a" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -41,6 +43,7 @@
 		<Unit filename="ball.h" />
 		<Unit filename="common.h" />
 		<Unit filename="geometry.h" />
+		<Unit filename="imageLoader.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

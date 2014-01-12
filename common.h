@@ -26,6 +26,8 @@ const int powerbar_yinit = 500;
 const int pointball_xinit = 300;
 const int pointball_yinit = 550;
 
+enum { DRAW_NULL, DRAW_AIM, DRAW_SHOT };
+
 struct Color {
   Color() {}
   Color(GLfloat _r, GLfloat _g, GLfloat _b) {

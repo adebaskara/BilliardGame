@@ -107,3 +107,46 @@
 1389357279 d:\teknik informatika\grafkom\billiardgame\imageloader.h
 	"soil/SOIL.h"
 
+1389509069 source:c:\users\ade_baskara\desktop\billiardgame\ball.cpp
+	<math.h>
+	"ball.h"
+	"common.h"
+	"geometry.h"
+	<vector>
+	<cstring>
+	<string>
+	<sstream>
+
+1389431043 c:\users\ade_baskara\desktop\billiardgame\ball.h
+	<iostream>
+	"common.h"
+	"geometry.h"
+	<vector>
+
+1389445661 c:\users\ade_baskara\desktop\billiardgame\common.h
+	<windows.h>
+	<OpenGL/gl.h>
+	<GLUT/glut.h>
+	<GL/gl.h>
+	<GL/glut.h>
+
+1389414972 c:\users\ade_baskara\desktop\billiardgame\geometry.h
+	<cmath>
+
+1389508956 source:c:\users\ade_baskara\desktop\billiardgame\main.cpp
+	<cmath>
+	<iostream>
+	<vector>
+	<string>
+	<cstring>
+	<sstream>
+	"ball.h"
+	"common.h"
+	"geometry.h"
+	"imageLoader.h"
+
+1389414972 c:\users\ade_baskara\desktop\billiardgame\imageloader.h
+	"soil/SOIL.h"
+
+1389414972 c:\users\ade_baskara\desktop\billiardgame\soil\soil.h
+
